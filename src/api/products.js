@@ -1,12 +1,12 @@
 export const fetchProducts = async () => {
 
   const res = await fetch("https://dummyjson.com/products");
-
   const { products } = await res.json();
-
   return products;
 
 };
+
+
 
 export const createProduct = async (product) => {
 
@@ -20,4 +20,20 @@ export const createProduct = async (product) => {
 
   return res.json();
 
+};
+
+
+
+export const searchProducts = async (query) => {
+  const res = await fetch(
+    `https://dummyjson.com/products/search?q=${query}`
+  );
+
+  if (!res.ok) {
+    console.log("Error searching products");
+    throw new Error("Error searching products");
+  }
+
+  const { products } = await res.json();
+  return products;
 };

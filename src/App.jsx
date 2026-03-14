@@ -15,6 +15,7 @@ import {
 import UsersTable from "./components/UsersTable";
 import ProductsTable from "./components/ProductsTable";
 import ProductForm from "./components/ProductForm";
+import ProductSearchTable from "./components/ProductSearchTable";
 
 const drawerWidth = 220;
 
@@ -35,11 +36,12 @@ function App() {
       case "addProduct":
         return <ProductForm />;
 
+      case "searchProduct":
+        return <ProductSearchTable />;
+
       default:
         return <UsersTable />;
-
     }
-
   };
 
   return (
@@ -49,15 +51,11 @@ function App() {
       {/* TOP BAR */}
 
       <AppBar position="fixed">
-
         <Toolbar>
-
           <Typography variant="h6">
             Admin Dashboard
           </Typography>
-
         </Toolbar>
-
       </AppBar>
 
       {/* SIDE MENU */}
@@ -77,22 +75,20 @@ function App() {
 
         <List>
 
-          <ListItemButton
-            onClick={() => setPage("users")}
-          >
+          <ListItemButton onClick={() => setPage("users")}>
             <ListItemText primary="Users" />
           </ListItemButton>
 
-          <ListItemButton
-            onClick={() => setPage("products")}
-          >
+          <ListItemButton onClick={() => setPage("products")}>
             <ListItemText primary="Products" />
           </ListItemButton>
 
-          <ListItemButton
-            onClick={() => setPage("addProduct")}
-          >
+          <ListItemButton onClick={() => setPage("addProduct")}>
             <ListItemText primary="Add Product" />
+          </ListItemButton>
+
+          <ListItemButton onClick={() => setPage("searchProduct")}>
+            <ListItemText primary="Search Product" />
           </ListItemButton>
 
         </List>
@@ -113,9 +109,7 @@ function App() {
       </Container>
 
     </Box>
-
   );
-
 }
 
 export default App;
