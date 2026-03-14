@@ -8,18 +8,18 @@ import {
   TextField,
   Button,
   Table,
+  TableBody,
+  TableCell,
   TableHead,
   TableRow,
-  TableCell,
-  TableBody,
+  Typography,
   Stack,
-  CircularProgress,
-  Typography
+  CircularProgress
 } from "@mui/material";
 
 function ProductSearchTable() {
 
-  const [input, setInput] = useState("");
+  const [searchInput, setSearchInput] = useState("");
   const [query, setQuery] = useState("");
 
   const {
@@ -34,18 +34,17 @@ function ProductSearchTable() {
 
   const handleSearch = () => {
 
-    if (!input.trim()) return;
+    setQuery(searchInput);
 
-    setQuery(input);
-    refetch();
+    setTimeout(() => {
+      refetch();
+    }, 0);
   };
 
-  const handleKeyDown = (e) => {
-
+  const handleKeyPress = (e) => {
     if (e.key === "Enter") {
       handleSearch();
     }
-
   };
 
   return (
@@ -61,9 +60,9 @@ function ProductSearchTable() {
         <TextField
           label="Search by ID or Title"
           fullWidth
-          value={input}
-          onChange={(e)=>setInput(e.target.value)}
-          onKeyDown={handleKeyDown}
+          value={searchInput}
+          onChange={(e)=>setSearchInput(e.target.value)}
+          onKeyDown={handleKeyPress}
         />
 
         <Button
@@ -75,7 +74,13 @@ function ProductSearchTable() {
 
       </Stack>
 
-      {isFetching && <CircularProgress />}
+      {isFetching && (
+        <Typography sx={{ mb:2 }}>
+          Loading results...
+        </Typography>
+      )}
+
+      {isFetching && <CircularProgress sx={{ mb:2 }} />}
 
       <Table>
 
@@ -112,7 +117,6 @@ function ProductSearchTable() {
     </Paper>
 
   );
-
 }
 
 export default ProductSearchTable;
