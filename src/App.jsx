@@ -9,20 +9,44 @@ import {
   List,
   ListItemButton,
   ListItemText,
-  Box
+  Box,
+  Button
 } from "@mui/material";
 
 import UsersTable from "./components/UsersTable";
 import ProductsTable from "./components/ProductsTable";
 import ProductForm from "./components/ProductForm";
 import ProductSearchTable from "./components/ProductSearchTable";
+import Login from "./components/Login";
 
 const drawerWidth = 220;
 
 function App() {
 
+  // 🔐 Auth state
+  const [isAuthenticated, setIsAuthenticated] = useState(
+    !!localStorage.getItem("token")
+  );
+
   const [page, setPage] = useState("users");
 
+  // ✅ Login handler
+  const handleLogin = () => {
+    setIsAuthenticated(true);
+  };
+
+  // ✅ Logout handler
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setIsAuthenticated(false);
+  };
+
+  // 🔒 If NOT logged in → show login page
+  if (!isAuthenticated) {
+    return <Login onLogin={handleLogin} />;
+  }
+
+  // 🔄 Page switcher
   const renderPage = () => {
 
     switch (page) {
@@ -51,11 +75,20 @@ function App() {
       {/* TOP BAR */}
 
       <AppBar position="fixed">
-        <Toolbar>
+
+        <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
+
           <Typography variant="h6">
             Admin Dashboard
           </Typography>
+
+          {/* Logout button */}
+          <Button color="inherit" onClick={handleLogout}>
+            Logout
+          </Button>
+
         </Toolbar>
+
       </AppBar>
 
       {/* SIDE MENU */}

@@ -1,32 +1,51 @@
+// Helper to get token
+const getAuthHeaders = () => {
+  const token = localStorage.getItem("token");
+
+  return {
+    "Content-Type": "application/json",
+    ...(token && { Authorization: `Bearer ${token}` })
+  };
+};
+
+// GET products (DummyJSON - optional auth, but added for consistency)
 export const fetchProducts = async () => {
 
-  const res = await fetch("https://dummyjson.com/products");
-  const { products } = await res.json();
-  return products;
+  const res = await fetch("https://dummyjson.com/products", {
+    headers: getAuthHeaders()
+  });
 
+  const { products } = await res.json();
+
+  return products;
 };
 
 
-
+// CREATE product (your secured backend)
 export const createProduct = async (product) => {
 
   const res = await fetch("http://localhost:3000/products", {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
+    headers: getAuthHeaders(),
     body: JSON.stringify(product)
   });
 
-  return res.json();
+  if (!res.ok) {
+    throw new Error("Error creating product");
+  }
 
+  return res.json();
 };
 
 
-
+// SEARCH products (DummyJSON search endpoint)
 export const searchProducts = async (query) => {
+
   const res = await fetch(
-    `https://dummyjson.com/products/search?q=${query}`
+    `https://dummyjson.com/products/search?q=${query}`,
+    {
+      headers: getAuthHeaders()
+    }
   );
 
   if (!res.ok) {
@@ -35,5 +54,6 @@ export const searchProducts = async (query) => {
   }
 
   const { products } = await res.json();
+
   return products;
 };
