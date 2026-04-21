@@ -1,9 +1,6 @@
 // Helper to get token
 const getAuthHeaders = () => {
   const token = localStorage.getItem("token");
-
-  console.log("All Product El token: " +token)
-
   return {
     "Content-Type": "application/json",
     ...(token && { Authorization: `Bearer ${token}` })
@@ -16,11 +13,7 @@ export const fetchProducts = async () => {
     headers: getAuthHeaders()
   });
 
-
   const products = await res.json();
-
-  console.log("Response with products: " + products);
-
   return products;
 };
 
@@ -46,7 +39,7 @@ export const createProduct = async (product) => {
 export const searchProducts = async (query) => {
 
   const res = await fetch(
-    `https://dummyjson.com/products/search?q=${query}`,
+    `http://localhost:8080/api/products/search?nombre=${query}`,
     {
       headers: getAuthHeaders()
     }
@@ -57,7 +50,6 @@ export const searchProducts = async (query) => {
     throw new Error("Error searching products");
   }
 
-  const { products } = await res.json();
-
+  const products = await res.json();
   return products;
 };

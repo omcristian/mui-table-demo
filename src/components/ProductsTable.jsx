@@ -109,7 +109,7 @@ function ProductsTable() {
           <TableBody>
 
             {filteredProducts.map((product)=>(
-              <TableRow key={product.id} hover>
+              <TableRow key={product.codigo} hover>
 
                 <TableCell>{product.codigo}</TableCell>
                 <TableCell>{product.nombre}</TableCell>

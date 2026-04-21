@@ -23,8 +23,6 @@ function Login({ onLogin }) {
     onSuccess: (data) => {
       
       // Save JWT
-      console.log("Login La response: " +data.accessToken);
-      
       localStorage.setItem("token", data.accessToken);
 
       // Notify parent

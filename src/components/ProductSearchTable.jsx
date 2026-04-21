@@ -86,26 +86,24 @@ function ProductSearchTable() {
 
         <TableHead>
           <TableRow>
-
-            <TableCell>ID</TableCell>
-            <TableCell>Title</TableCell>
-            <TableCell>Category</TableCell>
-            <TableCell>Price</TableCell>
-            <TableCell>Stock</TableCell>
-
+              <TableCell>Codigo</TableCell>
+              <TableCell>Nombre</TableCell>
+              <TableCell>Marca</TableCell>
+              <TableCell>Dimensiones</TableCell>
+              <TableCell>Tipo</TableCell>
           </TableRow>
         </TableHead>
 
         <TableBody>
 
           {data.map((p)=>(
-            <TableRow key={p.id} hover>
+            <TableRow key={p.codigo} hover>
 
-              <TableCell>{p.id}</TableCell>
-              <TableCell>{p.title}</TableCell>
-              <TableCell>{p.category}</TableCell>
-              <TableCell>${p.price}</TableCell>
-              <TableCell>{p.stock}</TableCell>
+              <TableCell>{p.codigo}</TableCell>
+              <TableCell>{p.nombre}</TableCell>
+              <TableCell>{p.marca}</TableCell>
+              <TableCell>{p.dimensiones}</TableCell>
+              <TableCell>{p.tipo}</TableCell>
 
             </TableRow>
           ))}
