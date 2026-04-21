@@ -8,10 +8,12 @@ export const loginRequest = async (credentials) => {
     body: JSON.stringify(credentials)
   });
 
-  console.log("res: " +res.text);
+  const data = await res.json();
+  
   if (!res.ok) {
     throw new Error("Invalid credentials");
   }
 
-  return res.json();
+  
+  return data;
 };

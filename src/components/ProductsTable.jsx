@@ -24,10 +24,10 @@ function ProductsTable() {
   });
 
   const [filters, setFilters] = useState({
-    title: "",
-    price: "",
-    category: "",
-    stock: ""
+    nombre: "",
+    marca: "",
+    dimensiones: "",
+    tipo: ""
   });
 
   const handleFilterChange = (field, value) => {
@@ -42,10 +42,10 @@ function ProductsTable() {
   const filteredProducts = data.filter((p) => {
 
     return (
-      p.title.toLowerCase().includes(filters.title.toLowerCase()) &&
-      p.category.toLowerCase().includes(filters.category.toLowerCase()) &&
-      p.price.toString().includes(filters.price) &&
-      p.stock.toString().includes(filters.stock)
+      p.nombre.toLowerCase().includes(filters.nombre.toLowerCase()) &&
+      p.marca.toLowerCase().includes(filters.marca.toLowerCase()) &&
+      p.dimensiones.toString().includes(filters.dimensiones) &&
+      p.tipo.toString().includes(filters.tipo)
     );
 
   });
@@ -63,31 +63,31 @@ function ProductsTable() {
       <Stack direction="row" spacing={2} sx={{ mb:2 }}>
 
         <TextField
-          label="Filter Title"
+          label="Filter nombre"
           size="small"
-          value={filters.title}
-          onChange={(e)=>handleFilterChange("title",e.target.value)}
+          value={filters.nombre}
+          onChange={(e)=>handleFilterChange("nombre",e.target.value)}
         />
 
         <TextField
-          label="Filter Category"
+          label="Filter Marca"
           size="small"
-          value={filters.category}
-          onChange={(e)=>handleFilterChange("category",e.target.value)}
+          value={filters.marca}
+          onChange={(e)=>handleFilterChange("marca",e.target.value)}
         />
 
         <TextField
-          label="Filter Price"
+          label="Filter Dimensiones"
           size="small"
-          value={filters.price}
-          onChange={(e)=>handleFilterChange("price",e.target.value)}
+          value={filters.dimensiones}
+          onChange={(e)=>handleFilterChange("dimensiones",e.target.value)}
         />
 
         <TextField
-          label="Filter Stock"
+          label="Filter Tipo"
           size="small"
-          value={filters.stock}
-          onChange={(e)=>handleFilterChange("stock",e.target.value)}
+          value={filters.tipo}
+          onChange={(e)=>handleFilterChange("tipo",e.target.value)}
         />
 
       </Stack>
@@ -98,11 +98,11 @@ function ProductsTable() {
 
           <TableHead>
             <TableRow>
-              <TableCell>ID</TableCell>
-              <TableCell>Title</TableCell>
-              <TableCell>Category</TableCell>
-              <TableCell>Price</TableCell>
-              <TableCell>Stock</TableCell>
+              <TableCell>Codigo</TableCell>
+              <TableCell>Nombre</TableCell>
+              <TableCell>Marca</TableCell>
+              <TableCell>Dimensiones</TableCell>
+              <TableCell>Tipo</TableCell>
             </TableRow>
           </TableHead>
 
@@ -111,11 +111,11 @@ function ProductsTable() {
             {filteredProducts.map((product)=>(
               <TableRow key={product.id} hover>
 
-                <TableCell>{product.id}</TableCell>
-                <TableCell>{product.title}</TableCell>
-                <TableCell>{product.category}</TableCell>
-                <TableCell>${product.price}</TableCell>
-                <TableCell>{product.stock}</TableCell>
+                <TableCell>{product.codigo}</TableCell>
+                <TableCell>{product.nombre}</TableCell>
+                <TableCell>{product.marca}</TableCell>
+                <TableCell>{product.dimensiones}</TableCell>
+                <TableCell>{product.tipo}</TableCell>
 
               </TableRow>
             ))}

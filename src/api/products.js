@@ -2,6 +2,8 @@
 const getAuthHeaders = () => {
   const token = localStorage.getItem("token");
 
+  console.log("All Product El token: " +token)
+
   return {
     "Content-Type": "application/json",
     ...(token && { Authorization: `Bearer ${token}` })
@@ -10,12 +12,14 @@ const getAuthHeaders = () => {
 
 // GET products (DummyJSON - optional auth, but added for consistency)
 export const fetchProducts = async () => {
-
-  const res = await fetch("https://dummyjson.com/products", {
+  const res = await fetch("http://localhost:8080/api/products", {
     headers: getAuthHeaders()
   });
 
-  const { products } = await res.json();
+
+  const products = await res.json();
+
+  console.log("Response with products: " + products);
 
   return products;
 };

@@ -21,9 +21,11 @@ function Login({ onLogin }) {
   const mutation = useMutation({
     mutationFn: loginRequest,
     onSuccess: (data) => {
-
+      
       // Save JWT
-      localStorage.setItem("token", data.token);
+      console.log("Login La response: " +data.accessToken);
+      
+      localStorage.setItem("token", data.accessToken);
 
       // Notify parent
       onLogin();
