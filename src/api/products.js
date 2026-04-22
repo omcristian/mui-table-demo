@@ -3,6 +3,7 @@ import { apiFetch } from "./api_base";
 // GET products (DummyJSON - optional auth, but added for consistency)
 export const fetchProducts = () => apiFetch("/products");
 
+
 // CREATE product (your secured backend)
 export const createProduct = (product) =>
   apiFetch("/products", {
