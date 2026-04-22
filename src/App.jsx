@@ -41,7 +41,7 @@ function App() {
 
   const [mobileOpen, setMobileOpen] = useState(false);
   const [collapsed, setCollapsed] = useState(false);
-  const [page, setPage] = useState("users");
+  const [page, setPage] = useState("searchProduct");
 
   const [isAuthenticated, setIsAuthenticated] = useState(
     !!localStorage.getItem("token")
@@ -140,7 +140,6 @@ function App() {
         }}
       >
         <List>
-          <MenuItem label="Users" value="users" icon={<PeopleIcon />} />
           <MenuItem label="Products" value="products" icon={<InventoryIcon />} />
           <MenuItem label="Add Product" value="addProduct" icon={<AddBoxIcon />} />
           <MenuItem label="Search Product" value="searchProduct" icon={<SearchIcon />} />
