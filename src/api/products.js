@@ -9,7 +9,7 @@ const getAuthHeaders = () => {
 
 // GET products (DummyJSON - optional auth, but added for consistency)
 export const fetchProducts = async () => {
-  const res = await fetch("http://localhost:8080/api/products", {
+  const res = await fetch("http://192.168.100.31:8080/api/products", {
     headers: getAuthHeaders()
   });
 
@@ -21,7 +21,7 @@ export const fetchProducts = async () => {
 // CREATE product (your secured backend)
 export const createProduct = async (product) => {
 
-  const res = await fetch("http://localhost:3000/products", {
+  const res = await fetch("http://192.168.100.31:3000/products", {
     method: "POST",
     headers: getAuthHeaders(),
     body: JSON.stringify(product)
@@ -39,7 +39,7 @@ export const createProduct = async (product) => {
 export const searchProducts = async (query) => {
 
   const res = await fetch(
-    `http://localhost:8080/api/products/search?nombre=${query}`,
+    `http://192.168.100.31:8080/api/products/search?nombre=${query}`,
     {
       headers: getAuthHeaders()
     }

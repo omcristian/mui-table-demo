@@ -19,7 +19,7 @@ import ProductForm from "./components/ProductForm";
 import ProductSearchTable from "./components/ProductSearchTable";
 import Login from "./components/Login";
 
-const drawerWidth = 220;
+const drawerWidth = 200;
 
 function App() {
 
@@ -79,12 +79,12 @@ function App() {
         <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
 
           <Typography variant="h6">
-            Admin Dashboard
+            Ingenesis Dashboard
           </Typography>
 
           {/* Logout button */}
           <Button color="inherit" onClick={handleLogout}>
-            Logout
+            Cerrar
           </Button>
 
         </Toolbar>

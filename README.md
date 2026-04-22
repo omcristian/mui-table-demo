@@ -19,3 +19,6 @@ If you are developing a production application, we recommend using TypeScript wi
 
 Start the project:
 npm run dev
+
+Start the project and expose in local network through IP
+npm run dev -- --host

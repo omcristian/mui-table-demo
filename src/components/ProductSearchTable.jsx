@@ -52,13 +52,13 @@ function ProductSearchTable() {
     <Paper sx={{ p:3 }}>
 
       <Typography variant="h6" sx={{ mb:2 }}>
-        Search Product
+        Buscar Producto
       </Typography>
 
       <Stack direction="row" spacing={2} sx={{ mb:3 }}>
 
         <TextField
-          label="Search by ID or Title"
+          label="Buscar por Nombre"
           fullWidth
           value={searchInput}
           onChange={(e)=>setSearchInput(e.target.value)}
@@ -69,7 +69,7 @@ function ProductSearchTable() {
           variant="contained"
           onClick={handleSearch}
         >
-          Search
+          Buscar
         </Button>
 
       </Stack>
