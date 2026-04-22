@@ -1,8 +1,8 @@
 const API_URL = import.meta.env.VITE_BACKEND_API_URL;
 const API_PORT = import.meta.env.VITE_BACKEND_API_PORT;
-const LOGIN_URL = import.meta.env.VITE_LOGIN_URL;
 const SERVER_PORT = `${API_URL}:${API_PORT}`;
 
+const LOGIN_URL = import.meta.env.VITE_LOGIN_URL;
 
 export const loginRequest = async (credentials) => {
 

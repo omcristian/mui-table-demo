@@ -1,55 +1,20 @@
-// Helper to get token
-const getAuthHeaders = () => {
-  const token = localStorage.getItem("token");
-  return {
-    "Content-Type": "application/json",
-    ...(token && { Authorization: `Bearer ${token}` })
-  };
-};
+import { apiFetch } from "./api_base";
 
 // GET products (DummyJSON - optional auth, but added for consistency)
-export const fetchProducts = async () => {
-  const res = await fetch("http://192.168.100.31:8080/api/products", {
-    headers: getAuthHeaders()
-  });
-
-  const products = await res.json();
-  return products;
-};
-
+export const fetchProducts = () => apiFetch("/products");
 
 // CREATE product (your secured backend)
-export const createProduct = async (product) => {
-
-  const res = await fetch("http://192.168.100.31:3000/products", {
+export const createProduct = (product) =>
+  apiFetch("/products", {
     method: "POST",
-    headers: getAuthHeaders(),
     body: JSON.stringify(product)
   });
-
-  if (!res.ok) {
-    throw new Error("Error creating product");
-  }
-
-  return res.json();
-};
 
 
 // SEARCH products (DummyJSON search endpoint)
 export const searchProducts = async (query) => {
-
-  const res = await fetch(
-    `http://192.168.100.31:8080/api/products/search?nombre=${query}`,
-    {
-      headers: getAuthHeaders()
-    }
-  );
-
-  if (!res.ok) {
-    console.log("Error searching products");
-    throw new Error("Error searching products");
-  }
-
-  const products = await res.json();
-  return products;
+  // encode query to avoid issues with spaces/special chars
+  const encodedQuery = encodeURIComponent(query);
+  const endpoint = `/products/search?nombre=${encodedQuery}`;
+  return apiFetch(endpoint);
 };
