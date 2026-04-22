@@ -149,7 +149,7 @@ function App() {
               <ListItemIcon>
                 {collapsed ? <ChevronRightIcon /> : <ChevronLeftIcon />}
               </ListItemIcon>
-              {!collapsed && <ListItemText primary="Toggle" />}
+              {!collapsed && <ListItemText primary="Ocultar Menu" />}
             </ListItemButton>
           )}
         </List>
